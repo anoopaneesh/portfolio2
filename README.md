@@ -108,6 +108,6 @@ This project is [MIT](LICENSE) licensed.
 
 ## 👤 Contact
 
-- Website: [Your Website](https://your-website.com)
+- Website: [https://anooppk.vercel.app/](https://anooppk.vercel.app/)
 - GitHub: [@anoopaneesh](https://github.com/anoopaneesh)
-- LinkedIn: [Your Name](https://linkedin.com/in/anoop-pk)
+- LinkedIn: [Anoop P K](https://linkedin.com/in/anoop-pk)
