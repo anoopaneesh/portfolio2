@@ -3,6 +3,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { experienceData } from '@/assets/assets'
+import { useDarkMode } from '../context/DarkModeContext'
 
 interface Experience {
   title: string
@@ -14,8 +15,10 @@ interface Experience {
 }
 
 const Experience = () => {
+  const { isDarkMode } = useDarkMode()
+
   return (
-    <div id="experience" className='font-outfit w-full px-[12%] py-10 scroll-mt-20'>
+    <div id="experience" className={`font-outfit w-full px-[12%] py-10 scroll-mt-20 transition-colors duration-300 ${isDarkMode ? 'text-white' : ''}`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +40,11 @@ const Experience = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className='border border-gray-200 rounded-xl p-8 hover:shadow-xl transition-all duration-300 bg-white'
+            className={`border rounded-xl p-8 transition-all duration-300 ${
+              isDarkMode 
+                ? 'border-gray-700 bg-gray-800/50 hover:shadow-white/10' 
+                : 'border-gray-200 bg-white hover:shadow-xl'
+            }`}
           >
             <div className='flex flex-col md:flex-row items-start gap-6 mb-8'>
               <motion.div
@@ -50,21 +57,29 @@ const Experience = () => {
                 <Image
                   src={exp.logo}
                   alt={`${exp.company} Logo`}
-                  className='object-contain'
+                  className={`object-contain ${isDarkMode ? 'brightness-200' : ''}`}
                   fill
                   sizes="(max-width: 80px) 100vw"
                 />
               </motion.div>
               <div className='flex-1 text-center md:text-left'>
-                <h3 className='text-2xl font-semibold text-gray-800 mb-2'>{exp.title}</h3>
-                <p className='text-xl text-gray-600 mb-1'>{exp.company}</p>
-                <p className='text-gray-500'>{exp.location}</p>
-                <p className='text-gray-500'>{exp.duration}</p>
+                <h3 className={`text-2xl font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+                  {exp.title}
+                </h3>
+                <p className={`text-xl mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {exp.company}
+                </p>
+                <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  {exp.location}
+                </p>
+                <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                  {exp.duration}
+                </p>
               </div>
             </div>
 
             <motion.ul 
-              className='space-y-4 text-gray-700 mt-6'
+              className={`space-y-4 mt-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
